@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantsoft | Innovation for Creators & Developers</title>
+    <!-- Google Fonts: Inter (Thin 100, Regular 400, Bold 700, Black 900) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --section-bg: #f5f7fa;
+            --dark-bg: #111111;
+            --nav-bg: #ffffff;
+            --text-main: #111111;
+            --text-sub: #444444;
+            --text-on-dark: #ffffff;
+            --text-sub-on-dark: rgba(255, 255, 255, 0.7);
+            --accent-blue: #0055ff;
+            --accent-purple: #7700ff;
+            --gradient: linear-gradient(90deg, #0055ff 0%, #7700ff 100%);
+            --border-color: #111111;
+            --border-on-dark: #333333;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100px;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--nav-bg);
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 2px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container a {
+            display: flex;
+            align-items: center;
+            text-decoration: none !important;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex !important;
+            gap: 30px;
+            height: 100%;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-main) !important;
+            text-decoration: none !important;
+            font-size: 0.75rem;
+            font-weight: 900;
+            transition: 0.2s;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue) !important;
+            opacity: 0.7;
+        }
+
+        /* --- Hero Sections --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            background-color: #000;
+            border-bottom: 2px solid var(--border-color);
+            padding-top: 100px;
+            box-sizing: border-box;
+        }
+
+        .hero-main {
+            background-image: none;
+            background-color: #000;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .hero-main-title-text {
+            font-size: clamp(3.5rem, 16vw, 13rem);
+            font-weight: 100;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin: 0;
+            line-height: 0.9;
+            color: #ffffff;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: var(--gradient);
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 10vw, 7.5rem);
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 25px auto 45px;
+            line-height: 1.8;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            padding: 18px 55px;
+            text-decoration: none !important;
+            font-size: 0.9rem;
+            font-weight: 900;
+            transition: 0.2s;
+            display: inline-block;
+            border: 2px solid #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            background: #ffffff;
+            color: #000000 !important;
+            border-radius: 0;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: #ffffff !important;
+        }
+
+        /* --- UTAOU Hero --- */
+        .hero-utaou {
+            height: 95vh;
+            background-image: url('utaou_hero_bg.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 0;
+        }
+
+        /* --- Brand Philosophy --- */
+        .brand-intro {
+            padding: 140px 10%;
+            background: var(--bg-color);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            font-weight: 900;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .brand-intro h2 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-intro p {
+            max-width: 800px;
+            font-size: 1.2rem;
+            color: var(--text-sub);
+            line-height: 2.2;
+        }
+
+        /* --- Product Stack Section (Updated Overlays & Side Images) --- */
+        .product-stack {
+            background-color: var(--dark-bg);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .product-item {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; /* レイアウト比率の微調整 */
+            min-height: 650px;
+            border-bottom: 2px solid var(--border-on-dark);
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-creative { background-image: url('creative_bg.jpg'); }
+        .product-development { background-image: url('dev_bg.png'); }
+
+
+        .product-item > div {
+            position: relative;
+            z-index: 2;
+            padding: 100px 10%;
+        }
+
+        .product-header h3 {
+            font-size: 3.2rem;
+            margin: 10px 0 0;
+            font-weight: 900;
+            line-height: 1.1;
+            color: #ffffff;
+        }
+
+        /* 見出し横の透過画像用コンテナ */
+        .product-side-image {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35%;
+            height: auto;
+            z-index: 3; /* オーバーレイより上 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-side-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+        }
+
+        .product-intro-text {
+            font-size: 0.95rem;
+            color: var(--accent-blue);
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-info p {
+            margin: 0 0 40px 0;
+            color: var(--text-sub-on-dark);
+            font-size: 1.3rem;
+            line-height: 1.9;
+        }
+
+        .arrow-link-white {
+            color: #ffffff !important;
+            text-decoration: none !important;
+            font-weight: 900;
+            font-size: 0.95rem;
+            border-bottom: 4px solid #ffffff;
+            padding-bottom: 4px;
+            width: fit-content;
+            transition: 0.2s;
+            letter-spacing: 0.1em;
+        }
+
+        .arrow-link-white:hover {
+            color: var(--accent-blue) !important;
+            border-color: var(--accent-blue);
+        }
+
+        /* --- News --- */
+        .section-news {
+            padding: 120px 10%;
+            background: #fff;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .news-item {
+            display: grid;
+            grid-template-columns: 150px 120px 1fr;
+            padding: 35px 0;
+            border-bottom: 1px solid #ddd;
+            text-decoration: none !important;
+            color: inherit !important;
+            transition: padding-left 0.3s ease;
+        }
+
+        .news-item:hover {
+            background: #fafafa;
+            padding-left: 10px;
+        }
+
+        .news-date {
+            color: var(--text-sub);
+            font-weight: 700;
+        }
+
+        .news-tag {
+            font-size: 0.7rem;
+            font-weight: 900;
+            background: var(--text-main);
+            color: white;
+            padding: 2px 8px;
+            height: fit-content;
+            width: fit-content;
+            text-transform: uppercase;
+        }
+
+        .news-title {
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 100px 10%;
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .social-links-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links-container a {
+            color: #fff !important;
+            text-decoration: none !important;
+            font-size: 0.75rem;
+            font-weight: 900;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            transition: 0.2s;
+            letter-spacing: 0.1em;
+        }
+
+        .social-links-container a:hover {
+            background: #fff;
+            color: #000 !important;
+            border-color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            nav { height: 80px; }
+            .logo-img { height: 40px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 0.6rem; }
+            .hero-main-title-text { font-size: 4rem; }
+            .hero h1 { font-size: 3.5rem; }
+            .product-item { grid-template-columns: 1fr; min-height: auto; }
+            .product-item > div { padding: 60px 10%; }
+            .product-header h3 { font-size: 2.5rem; }
+            .product-side-image { display: none; } /* スマホでは非表示 */
+            .news-item { grid-template-columns: 1fr; gap: 10px; }
+            footer { flex-direction: column; gap: 40px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="logo.png" alt="CANTSOFT" class="logo-img">
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="products.html">PRODUCTS</a>
+            <a href="news.html">NEWS</a>
+            <a href="about.html">ABOUT US</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+    </nav>
+
+    <!-- 1番目: Cantsoft ブランドヒーロー -->
+    <section class="hero hero-main">
+        <div class="hero-content">
+            <h1 class="hero-main-title-text">CANTSOFT</h1>
+            <p>そのアイデアを、「形」に</p>
+            <div class="btn-group">
+                <a href="products.html" class="btn">製品を見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2番目: UTAOU プロダクトヒーロー -->
+    <section class="hero hero-utaou">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-label">新リリース</span>
+            <h1>UTAOU♪</h1>
+            <p>
+                UTAU音源制作支援ツール<br>
+                UTAU音源を作る際の収録をより簡単に
+            </p>
+            <div class="btn-group">
+                <a href="utaou.html" class="btn">詳しく</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="brand-intro">
+        <span class="section-label">Brand Philosophy</span>
+        <h2>「作る」を、もっと自由に。</h2>
+        <p>
+            Cantsoftは、創作活動をするすべての人たちのための創作支援ソフトウェアと、
+            より深く作り込む開発者を支援する開発支援ツールを企画・開発し、提供しています。
+        </p>
+    </section>
+
+    <section class="product-stack">
+        <!-- 創作支援ソフトウェア -->
+        <div class="product-item product-creative">
+            <div class="product-overlay"></div>
+            <div class="product-header">
+                <span class="section-label" style="margin-bottom:15px; color:#ffffff; opacity: 0.5;">Creative Solution</span>
+                <div class="product-intro-text">Cantsoftでは2種類のサービスを提供しています</div>
+                <h3>創作支援<br>ソフトウェア</h3>
+            </div>
+            <!-- PC用サイド画像 (スマホでは非表示) -->
+            <div class="product-side-image">
+                <img src="creative_side.png" alt="Creative Solution Illustration">
+            </div>
+            <div class="product-info">
+                <p>AI歌唱ソフトなどの音声作品の制作のためのツールや台本制作をお手伝いするためのツールなど、あなたの創作活動を豊かにする様々なツールを提供します。</p>
+                <a href="products.html" class="arrow-link-white">VIEW DETAILS</a>
+            </div>
+        </div>
+
+        <!-- 開発支援ソフトウェア -->
+        <div class="product-item product-development">
+            <div class="product-overlay"></div>
+            <div class="product-header">
+                <span class="section-label" style="margin-bottom:15px; color:#ffffff; opacity: 0.5;">Development Solution</span>
+                <h3>開発支援<br>ソフトウェア</h3>
+            </div>
+            <!-- PC用サイド画像 (スマホでは非表示) -->
+            <div class="product-side-image">
+                <img src="dev_side.png" alt="Development Solution Illustration">
+            </div>
+            <div class="product-info">
+                <p>より高度な開発をお手伝いする様々なツールを提供します。</p>
+                <a href="products.html" class="arrow-link-white">VIEW DETAILS</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-news">
+        <span class="section-label">Latest News</span>
+        <div class="news-list">
+            <a href="news_utaou_release.html" class="news-item">
+                <span class="news-date">2026.1.1</span>
+                <span class="news-tag">Release</span>
+                <span class="news-title">UTAU音源制作支援ツール「UTAOU」正式リリース。</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">
+            <img src="logo.png" alt="CANTSOFT" class="footer-logo">
+            <div class="copyright">&copy; 2025 Cantsoft. All rights reserved.</div>
+        </div>
+        <div class="footer-social-section">
+            <div class="social-links-container">
+                <a href="https://x.com/cantsoft" target="_blank">X (Twitter)</a>
+                <a href="https://youtube.com/@cantsoft" target="_blank">YouTube</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

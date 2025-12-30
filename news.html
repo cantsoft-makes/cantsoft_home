@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News | Cantsoft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #111111;
+            --text-sub: #666666;
+            --accent-blue: #0055ff;
+            --border-color: #111111;
+            --nav-bg: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            padding-top: 100px;
+        }
+
+        /* --- Navigation (Common Style) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100px;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--nav-bg);
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 2px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container a {
+            display: flex;
+            align-items: center;
+            text-decoration: none !important;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-main) !important;
+            text-decoration: none !important;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue) !important;
+        }
+
+        /* --- Page Header --- */
+        .page-header {
+            padding: 80px 10% 40px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .page-header h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 100; /* Thin style */
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin: 0;
+        }
+
+        .page-header p {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-top: 10px;
+            letter-spacing: 0.2em;
+        }
+
+        /* --- News List --- */
+        .news-container {
+            padding: 0 10% 100px;
+        }
+
+        .news-item {
+            display: grid;
+            grid-template-columns: 180px 120px 1fr;
+            padding: 40px 0;
+            border-bottom: 1px solid #eeeeee;
+            text-decoration: none !important;
+            color: inherit !important;
+            transition: all 0.3s ease;
+            align-items: center;
+        }
+
+        .news-item:hover {
+            background-color: #fafafa;
+            padding-left: 20px;
+        }
+
+        .news-date {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-sub);
+        }
+
+        .news-tag {
+            font-size: 0.65rem;
+            font-weight: 900;
+            background: var(--text-main);
+            color: white;
+            padding: 4px 10px;
+            text-transform: uppercase;
+            width: fit-content;
+            letter-spacing: 0.1em;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 100px 10%;
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .social-links-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links-container a {
+            color: #fff !important;
+            text-decoration: none !important;
+            font-size: 0.75rem;
+            font-weight: 900;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            transition: 0.2s;
+            letter-spacing: 0.1em;
+        }
+
+        .social-links-container a:hover {
+            background: #fff;
+            color: #000 !important;
+            border-color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            nav { height: 80px; }
+            .logo-img { height: 40px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 0.6rem; }
+            .hero-main-title-text { font-size: 4rem; }
+            .hero h1 { font-size: 3.5rem; }
+            .product-item { grid-template-columns: 1fr; min-height: auto; }
+            .product-item > div { padding: 60px 10%; }
+            .product-header h3 { font-size: 2.5rem; }
+            .news-item { grid-template-columns: 1fr; gap: 10px; }
+            footer { flex-direction: column; gap: 40px; text-align: center; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="logo.png" alt="CANTSOFT" class="logo-img">
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="products.html">PRODUCTS</a>
+            <a href="news.html">NEWS</a>
+            <a href="about.html">ABOUT US</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>NEWS</h1>
+        <p>LATEST UPDATES</p>
+    </header>
+
+    <main class="news-container">
+        <!-- ニュース項目 1 -->
+        <a href="news_utaou_release.html" class="news-item">
+            <span class="news-date">2026.01.01</span>
+            <span class="news-tag">Release</span>
+            <span class="news-title">UTAU音源制作支援ツール「UTAOU♪」正式リリースのお知らせ</span>
+        </a>
+    </main>
+
+    <footer>
+        <div class="footer-brand">
+            <img src="logo.png" alt="CANTSOFT" class="footer-logo">
+            <div class="copyright">&copy; 2025 Cantsoft. All rights reserved.</div>
+        </div>
+        <div class="footer-social-section">
+            <div class="social-links-container">
+                <a href="https://x.com/cantsoft" target="_blank">X (Twitter)</a>
+                <a href="https://youtube.com/@cantsoft" target="_blank">YouTube</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

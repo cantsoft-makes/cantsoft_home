@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmadeuSY Voice Databases | Cantsoft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #111111;
+            --text-sub: #666666;
+            --accent-blue: #0055ff;
+            --border-color: #111111;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --section-bg: #f9f9f9;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            padding-top: 100px;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100px;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--nav-bg);
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 2px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-img { height: 60px; width: auto; }
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { color: var(--text-main) !important; text-decoration: none !important; font-size: 0.75rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+
+        /* --- Page Header --- */
+        .page-header {
+            padding: 80px 10% 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            font-weight: 100;
+            margin: 0;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        /* --- Filter Section --- */
+        .filter-section {
+            padding: 40px 10%;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-label {
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-sub);
+        }
+
+        .filter-select {
+            appearance: none;
+            border: 2px solid var(--border-color);
+            padding: 12px 15px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: inherit;
+            background-color: #fff;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .filter-select:hover { background-color: #f0f0f0; }
+
+        /* --- Products Grid --- */
+        .products-grid {
+            padding: 60px 10%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            border: 1px solid #eee;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-decoration: none;
+            color: inherit;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            border-color: var(--accent-blue);
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            overflow: hidden;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .product-info {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .db-name {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .db-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .db-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 0.6rem;
+            color: var(--text-sub);
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 2px;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Pagination --- */
+        .display-control {
+            padding: 40px 10%;
+            text-align: right;
+            border-top: 1px solid #eee;
+            background: #fff;
+        }
+
+        .display-control label {
+            font-size: 0.7rem;
+            font-weight: 900;
+            margin-right: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- AmadeuSY Info Section (Background Image Edition) --- */
+        .amadeusy-info {
+            position: relative;
+            padding: 150px 10%;
+            background-image: url('gui_screenshot.png'); /* ここを実際の背景画像パスに変更してください */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* パララックス効果 */
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* 暗幕オーバーレイ（文字を読みやすくするため） */
+        .amadeusy-info::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* 黒の70%透過 */
+            z-index: 1;
+        }
+
+        .amadeusy-info-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .amadeusy-info h2 {
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 0.4em;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+        }
+
+        .amadeusy-title {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 100;
+            margin-bottom: 30px;
+            display: block;
+            letter-spacing: -0.02em;
+        }
+
+        .amadeusy-desc {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+            line-height: 2;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .btn-site {
+            display: inline-block;
+            padding: 25px 60px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-site:hover {
+            background: var(--accent-blue);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 100px 10%;
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        .copyright {
+            margin-top: 15px;
+            opacity: 0.5;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        .social-links-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links-container a {
+            color: #fff !important;
+            text-decoration: none !important;
+            font-size: 0.75rem;
+            font-weight: 900;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            transition: 0.2s;
+            letter-spacing: 0.1em;
+        }
+
+        .social-links-container a:hover {
+            background: #fff;
+            color: #000 !important;
+            border-color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            nav { height: 80px; }
+            .logo-img { height: 40px; }
+            .filter-section { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: 1fr; }
+            .amadeusy-info { padding: 100px 5%; }
+            footer { flex-direction: column; gap: 40px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="logo.png" alt="CANTSOFT" class="logo-img">
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="products.html">PRODUCTS</a>
+            <a href="news.html">NEWS</a>
+            <a href="about.html">ABOUT US</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>AmadeuSY用歌声データベース</h1>
+        <p>Cantsoftが企画・販売するAmadeuSY用の歌声データベース</p>
+    </header>
+
+    <!-- 絞り込みセクション -->
+    <section class="filter-section">
+        <div class="filter-group">
+            <label class="filter-label">供給元</label>
+            <select class="filter-select">
+                <option>すべて</option>
+                <option>Cantsoft</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label class="filter-label">性別</label>
+            <select class="filter-select">
+                <option>すべて</option>
+                <option>女声</option>
+                <option>男声</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label class="filter-label">価格区分</label>
+            <select class="filter-select">
+                <option>すべて</option>
+                <option>無償</option>
+                <option>有償</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label class="filter-label">歌唱言語</label>
+            <select class="filter-select">
+                <option>すべて</option>
+                <option>日本語</option>
+                <option>英語</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- 製品一覧 -->
+    <main class="products-grid">
+        <!-- DB 1 -->
+        <a href="#" class="product-card">
+            <div class="product-img"></div>
+            <div class="product-info">
+                <span class="db-name">coming soon...</span>
+                <p class="db-description">準備中です...</p>
+                <div class="db-tags">
+                    <span class="tag">Cantsoft</span>
+                    <span class="tag">男声</span>
+                    <span class="tag">有償</span>
+                    <span class="tag">日本語</span>
+                </div>
+            </div>
+        </a>
+    </main>
+
+    <!-- 表示量コントロール -->
+    <div class="display-control">
+        <label>一ページあたりの表示量</label>
+        <select class="filter-select" style="min-width: 100px;">
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+    </div>
+
+    <!-- AmadeuSYとは？ (背景画像付き) -->
+    <section class="amadeusy-info">
+        <div class="amadeusy-info-content">
+            <h2>About AmadeuSY</h2>
+            <span class="amadeusy-title">AmadeuSYとは？</span>
+            <p class="amadeusy-desc">
+                AmadeuSY Sing（アマデウシー・シング）は、AI総合ブランドのAmadeuSY Groupが開発・販売する新世代歌声合成ソフトウェアです。<br>
+                深層学習等のAI技術により絵を描くようにリアルな歌声を作ることができます。デフォルトの歌手の他、お好きな声を選んで追加
+                することで、より豊かにあなたの作品にぴったりの色をつけることができます。<br>
+                Cantsoftは、AmadeuSY Sing用歌声データベースを企画・販売しています。
+            </p>
+            <a href="https://amadeusy-web.vercel.app/" target="_blank" class="btn-site">AmadeuSY公式サイト</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">
+            <img src="logo.png" alt="CANTSOFT" class="footer-logo">
+            <div class="copyright">&copy; 2025 Cantsoft. All rights reserved.</div>
+        </div>
+        <div class="footer-social-section">
+            <div class="social-links-container">
+                <a href="https://x.com/cantsoft" target="_blank">X (Twitter)</a>
+                <a href="https://youtube.com/@cantsoft" target="_blank">YouTube</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
