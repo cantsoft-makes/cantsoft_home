@@ -20,9 +20,10 @@
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
             padding-top: 100px;
             line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* --- Navigation --- */
@@ -43,7 +44,14 @@
 
         .logo-img { height: 60px; width: auto; }
         .nav-links { display: flex; gap: 25px; }
-        .nav-links a { color: var(--text-main) !important; text-decoration: none !important; font-size: 0.75rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+        .nav-links a { 
+            color: var(--text-main) !important; 
+            text-decoration: none !important; 
+            font-size: 0.75rem; 
+            font-weight: 900; 
+            letter-spacing: 0.1em; 
+            text-transform: uppercase; 
+        }
 
         /* --- News Content Layout --- */
         .news-container {
@@ -70,7 +78,7 @@
         .news-title {
             font-size: clamp(1.8rem, 5vw, 2.5rem);
             font-weight: 900;
-            line-height: 1.2;
+            line-height: 1.3;
             margin: 0;
             letter-spacing: -0.02em;
         }
@@ -84,7 +92,7 @@
         .news-body h2 {
             font-size: 1.5rem;
             font-weight: 900;
-            margin: 60px 0 20px;
+            margin: 80px 0 30px;
             padding-left: 15px;
             border-left: 4px solid var(--accent-blue);
         }
@@ -93,28 +101,32 @@
             margin-bottom: 30px;
         }
 
-        .news-image {
+        /* --- Image Layout Logic --- */
+        .news-image, .news-imagesecond {
             width: 100%;
-            margin: 40px 0;
-            background: #f0f0f0;
-            aspect-ratio: 16 / 9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 0.8rem;
-            text-transform: uppercase;
+            margin: 50px 0;
+            background: #f7f7f7;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #eeeeee;
+        }
+
+        .news-image img, .news-imagesecond img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
 
         /* --- Back Button --- */
         .back-to-news {
-            margin-top: 100px;
+            margin-top: 120px;
             text-align: center;
         }
 
         .btn-back {
             display: inline-block;
-            padding: 15px 40px;
+            padding: 18px 50px;
             border: 2px solid var(--text-main);
             color: var(--text-main);
             text-decoration: none;
@@ -122,12 +134,13 @@
             font-weight: 900;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .btn-back:hover {
             background: var(--text-main);
             color: #fff;
+            transform: translateY(-2px);
         }
 
         /* --- Footer --- */
@@ -138,11 +151,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-sizing: border-box;
         }
 
         .footer-logo {
             height: 30px;
             filter: brightness(0) invert(1);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .copyright {
+            font-size: 0.7rem;
+            opacity: 0.5;
         }
 
         .social-links-container {
@@ -157,7 +178,7 @@
             font-weight: 900;
             border: 2px solid rgba(255,255,255,0.2);
             padding: 12px 24px;
-            transition: 0.2s;
+            transition: 0.3s;
             letter-spacing: 0.1em;
         }
 
@@ -167,72 +188,31 @@
             border-color: #fff;
         }
 
+        /* --- Responsive Design --- */
         @media (max-width: 900px) {
             nav { height: 80px; }
             .logo-img { height: 40px; }
-            .nav-links { gap: 15px; }
-            .nav-links a { font-size: 0.6rem; }
-            .hero-main-title-text { font-size: 4rem; }
-            .hero h1 { font-size: 3.5rem; }
-            .product-item { grid-template-columns: 1fr; min-height: auto; }
-            .product-item > div { padding: 60px 10%; }
-            .product-header h3 { font-size: 2.5rem; }
-            .news-item { grid-template-columns: 1fr; gap: 10px; }
-            footer { flex-direction: column; gap: 40px; text-align: center; }
-        }        /* --- Footer --- */
-        footer {
-            padding: 100px 10%;
-            background: #000;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo {
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .social-links-container {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-links-container a {
-            color: #fff !important;
-            text-decoration: none !important;
-            font-size: 0.75rem;
-            font-weight: 900;
-            border: 2px solid rgba(255,255,255,0.2);
-            padding: 12px 24px;
-            transition: 0.2s;
-            letter-spacing: 0.1em;
-        }
-
-        .social-links-container a:hover {
-            background: #fff;
-            color: #000 !important;
-            border-color: #fff;
-        }
-
-        @media (max-width: 900px) {
-            nav { height: 80px; }
-            .logo-img { height: 40px; }
-            .nav-links { gap: 15px; }
-            .nav-links a { font-size: 0.6rem; }
-            .hero-main-title-text { font-size: 4rem; }
-            .hero h1 { font-size: 3.5rem; }
-            .product-item { grid-template-columns: 1fr; min-height: auto; }
-            .product-item > div { padding: 60px 10%; }
-            .product-header h3 { font-size: 2.5rem; }
-            .news-item { grid-template-columns: 1fr; gap: 10px; }
-            footer { flex-direction: column; gap: 40px; text-align: center; }
+            .nav-links { display: none; } /* Mobile Menu implementation would go here */
+            
+            .news-container { margin-top: 40px; }
+            .news-title { font-size: 1.8rem; }
+            
+            footer { 
+                flex-direction: column; 
+                gap: 40px; 
+                text-align: center; 
+                padding: 80px 5%;
+            }
+            .social-links-container {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation -->
     <nav>
         <div class="logo-container">
             <a href="index.html">
@@ -248,32 +228,33 @@
         </div>
     </nav>
 
+    <!-- Main Content -->
     <article class="news-container">
-        <!-- ニュースの見出し部分 -->
+        <!-- Header Section -->
         <header class="news-header">
             <span class="news-date">2026.01.01</span>
             <h1 class="news-title">UTAU音源制作支援ツール「UTAOU♪」を正式リリースしました。</h1>
         </header>
 
-        <!-- ニュースの本文部分 -->
+        <!-- Article Body -->
         <div class="news-body">
             <p>
                 Cantsoftは1/1、UTAU音源の収録を行うソフトウェア「UTAOU♪」を正式にリリースいたしました。
             </p>
 
-<div class="news-image">
-    <img src="utaou_image.png" alt="UTAOUimage">
-</div>
+            <!-- First Image -->
+            <div class="news-image">
+                <img src="utaou_image.png" alt="UTAOU ソフトウェア画面プレビュー">
+            </div>
 
-
+            <!-- Second Image -->
             <div class="news-imagesecond">
-    <img src="utaou_hero_bg.png" alt="UTAOUimage2">
-</div>
-            
+                <img src="utaou_hero_bg.png" alt="UTAOU コンセプトビジュアル">
+            </div>
 
             <h2>制作の背景</h2>
             <p>
-                UTAU音源をつくりたいけど既存の収録ソフトが操作難しそう…などで収録に手を出せずにいた人やとりあえず最低限うたわせたい！という人に向けたシンプルな収録ソフトです。
+                UTAU音源をつくりたいけど既存の収録ソフトが操作難しそう…などで収録に手を出せずにいた人や、とりあえず最低限うたわせたい！という人に向けたシンプルな収録ソフトです。
             </p>
 
             <h2>主な機能</h2>
@@ -288,12 +269,13 @@
             </p>
         </div>
 
-        <!-- ニュース一覧に戻るボタン -->
+        <!-- Back Link -->
         <div class="back-to-news">
             <a href="news.html" class="btn-back">Back to News</a>
         </div>
     </article>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-brand">
             <img src="logo.png" alt="CANTSOFT" class="footer-logo">
@@ -305,6 +287,7 @@
                 <a href="https://youtube.com/@cantsoft" target="_blank">YouTube</a>
             </div>
         </div>
+    </footer>
 
 </body>
 </html>
