@@ -38,7 +38,7 @@
             background: var(--nav-bg);
             z-index: 1000;
             box-sizing: border-box;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             backdrop-filter: blur(10px);
         }
 
@@ -49,8 +49,8 @@
         /* --- Hero Section --- */
         .product-hero {
             position: relative;
-            height: 80vh;
-            min-height: 600px;
+            height: 85vh;
+            min-height: 650px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -67,7 +67,7 @@
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
 
@@ -90,7 +90,6 @@
             margin: 0;
             line-height: 1;
             letter-spacing: -0.02em;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .hero-description {
@@ -150,6 +149,7 @@
         .screenshot-section {
             padding: 120px 10%;
             border-top: 1px solid #eee;
+            background: #fff;
         }
 
         .section-label {
@@ -184,6 +184,42 @@
             font-size: 0.8rem;
         }
         .shot-caption { padding: 25px; font-weight: 700; font-size: 1rem; border-top: 1px solid #eee; }
+
+        /* --- Specs Section --- */
+        .specs-section {
+            padding: 100px 10%;
+            background: #fdfdfd;
+            border-top: 1px solid #eee;
+        }
+
+        .specs-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .spec-item {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .spec-label {
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .spec-value {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
 
         /* --- Update History Section --- */
         .update-section {
@@ -364,6 +400,29 @@
         </div>
     </section>
 
+    <!-- Specs Section (Moved above Versions) -->
+    <section class="specs-section">
+        <span class="section-label">Requirements</span>
+        <div class="specs-grid">
+            <div class="spec-item">
+                <span class="spec-label">OS</span>
+                <div class="spec-value">Windows 10 / 11 各種日本語版<br><span style="font-size: 0.8rem; opacity: 0.6;">※サーバー版を除く</span></div>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Memory / Storage</span>
+                <div class="spec-value">メモリ: 2GB以上<br>ストレージ: 1GB以上の空き容量</div>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Audio Devices</span>
+                <div class="spec-value">録音用マイク<br>音声出力デバイス（スピーカー・ヘッドホン等）</div>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Display</span>
+                <div class="spec-value">カラーモニター</div>
+            </div>
+        </div>
+    </section>
+
     <section class="update-section">
         <span class="section-label">Versions</span>
         <div class="update-list">
@@ -413,41 +472,34 @@
     </footer>
 
     <script>
-        /**
-         * ここを書き換えるだけで画像やリンクを変更できます
-         */
         const CONFIG = {
-            youtubeId: "hDcMn6tAzqc", // 指定されたYouTube動画ID
-            heroImage: "utaou_hero_bg.png", // ヒーロー背景画像
+            youtubeId: "hDcMn6tAzqc",
+            heroImage: "utaou_hero_bg.png",
             manualUrl: "https://drive.google.com/file/d/1jHZy3abLV5lTe3rUcfB--99D2mUA_qdT/view?usp=drive_link", 
             archiveUrl: "https://drive.google.com/drive/folders/1mEL1q-S0vS4R-aaiN1LK2zfROMRvsvwR?usp=drive_link", 
             latestDownloadUrl: "https://drive.google.com/file/d/1NPa8UnGY2J3CAw7ddRBvIWaMSoTUrPML/view?usp=sharing",
             screenshots: [
-                "utaou_sc4.png", // 1枚目
-                "utaou_sc2.png", // 2枚目
-                "utaou_sc3.png", // 3枚目
-                "utaou_hero_bg.png"  // 4枚目
+                "utaou_sc4.png",
+                "utaou_sc2.png",
+                "utaou_sc3.png",
+                "utaou_hero_bg.png"
             ]
         };
 
-        // 反映処理
         if (CONFIG.heroImage) {
             document.getElementById('hero-bg').style.backgroundImage = `url('${CONFIG.heroImage}')`;
         }
         
-        // YouTube埋め込み反映
         document.getElementById('youtube-frame').src = `https://www.youtube.com/embed/${CONFIG.youtubeId}`;
-        
         document.getElementById('manual-link').href = CONFIG.manualUrl;
         document.getElementById('archive-link').href = CONFIG.archiveUrl;
         document.getElementById('latest-dl').href = CONFIG.latestDownloadUrl;
 
-        // スクリーンショットの反映
         CONFIG.screenshots.forEach((url, index) => {
             const el = document.getElementById(`shot-${index + 1}`);
             if (el && url) {
                 el.style.backgroundImage = `url('${url}')`;
-                el.textContent = ""; // プレースホルダ用テキストを消去
+                el.textContent = "";
             }
         });
     </script>
