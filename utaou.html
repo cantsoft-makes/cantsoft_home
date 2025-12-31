@@ -93,6 +93,21 @@
             text-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
+        .hero-description {
+            max-width: 800px;
+            margin: 30px auto 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .trademark-note {
+            font-size: 0.7rem;
+            margin-top: 20px;
+            opacity: 0.6;
+        }
+
         .hero-actions {
             margin-top: 50px;
             display: flex;
@@ -108,6 +123,7 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .btn-primary { background: #fff; color: #000 !important; }
@@ -278,12 +294,8 @@
             .logo-img { height: 40px; }
             .nav-links { gap: 15px; }
             .nav-links a { font-size: 0.6rem; }
-            .hero-main-title-text { font-size: 4rem; }
-            .hero h1 { font-size: 3.5rem; }
-            .product-item { grid-template-columns: 1fr; min-height: auto; }
-            .product-item > div { padding: 60px 10%; }
-            .product-header h3 { font-size: 2.5rem; }
-            .news-item { grid-template-columns: 1fr; gap: 10px; }
+            .product-hero h1 { font-size: 3.5rem; }
+            .screenshot-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; gap: 40px; text-align: center; }
         }
     </style>
@@ -308,23 +320,25 @@
     <header class="product-hero" id="hero-bg">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-        <div>
-            <span class="product-badge">UTAU音源制作支援ツール/UTAU音源用収録ツール</span>
+            <span class="product-badge">UTAU音源制作支援ツール / 収録支援ソフト</span>
             <h1>UTAOU♪</h1>
+            <p class="hero-description">
+                UTAU音源をつくりたいけど、既存のソフトは難しそう...<br>
+                そんな悩みを持つ方や、とりあえず最低限歌わせたい！という方に向けた、<br>
+                徹底的にシンプルさを追求した音源収録ソフトです。
+            </p>
             <div class="hero-actions">
                 <a href="#" id="latest-dl" class="btn btn-primary">Download Latest</a>
                 <a href="#" id="manual-link" class="btn btn-outline" target="_blank">Manual</a>
-            
             </div>
-            <h4>UTAU音源をつくりたいけど既存の収録ソフトが操作難しそう…などで収録に手を出せずにいた人やとりあえず最低限うたわせたい！という人に向けたシンプルな収録ソフトです。</h4>
-            <h6>※「UTAU」及び「UTAUプロジェクト」とその関連名称は飴屋／菖蒲様の商標です。</h6>
+            <p class="trademark-note">※「UTAU」及び「UTAUプロジェクト」とその関連名称は飴屋／菖蒲様の商標です。</p>
         </div>
     </header>
 
     <section class="video-section">
         <span class="section-label">Promotion Movie</span>
         <div class="video-container">
-            <iframe id="youtube-frame" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+            <iframe id="youtube-frame" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
 
@@ -332,20 +346,20 @@
         <span class="section-label">Visual Archive</span>
         <div class="screenshot-grid">
             <div class="shot-card">
-                <div class="shot-img" id="shot-1"></div>
-                <div class="shot-caption">初めてでも分かりやすい操作性</div>
+                <div class="shot-img" id="shot-1">Visual 1</div>
+                <div class="shot-caption">初めてでも分かりやすい直感的な操作性</div>
             </div>
             <div class="shot-card">
-                <div class="shot-img" id="shot-2"></div>
-                <div class="shot-caption">波形&スペクトルグラムの表示でより視覚的に</div>
+                <div class="shot-img" id="shot-2">Visual 2</div>
+                <div class="shot-caption">波形＆スペクトログラムで録音状態を視覚化</div>
             </div>
             <div class="shot-card">
-                <div class="shot-img" id="shot-3"></div>
-                <div class="shot-caption">進捗をプロセスバーで分かりやすく</div>
+                <div class="shot-img" id="shot-3">Visual 3</div>
+                <div class="shot-caption">進捗バーで残りの収録数も一目で把握</div>
             </div>
             <div class="shot-card">
-                <div class="shot-img" id="shot-4"></div>
-                <div class="shot-caption">シンプルなデザイン、シンプルな機能で初心者向け</div>
+                <div class="shot-img" id="shot-4">Visual 4</div>
+                <div class="shot-caption">無駄を削ぎ落としたミニマルなデザイン</div>
             </div>
         </div>
     </section>
@@ -357,7 +371,7 @@
             <div class="update-row">
                 <span class="ver-tag">v1.0.0</span>
                 <span class="update-date">January 01, 2026</span>
-                <div class="update-desc">正式リリース。</div>
+                <div class="update-desc">正式リリース。基本機能の安定化およびUIのブラッシュアップを行いました。</div>
             </div>
 
             <div class="archive-box">
@@ -375,10 +389,10 @@
                 <div class="update-desc">
                     <p style="font-weight: 700; color: var(--accent-red); margin-bottom: 10px;">現在確認されている不具合：</p>
                     <ul class="bug-list-style">
-                        <li>現在確認されている不具合はございません。</li>
+                        <li>現在、致命的な不具合は報告されておりません。</li>
                     </ul>
                     <p class="bug-note">
-                        ※これらの不具合は次期アップデートにて修正予定です。不具合の報告はCONTACTよりお願いいたします。
+                        ※不具合の報告や要望については CONTACT ページよりお問い合わせください。
                     </p>
                 </div>
             </div>
@@ -403,11 +417,11 @@
          * ここを書き換えるだけで画像やリンクを変更できます
          */
         const CONFIG = {
-            youtubeId: "hDcMn6tAzqc", // YouTubeのURLの末尾 ID
+            youtubeId: "hDcMn6tAzqc", // 指定されたYouTube動画ID
             heroImage: "utaou_hero_bg.png", // ヒーロー背景画像
-            manualUrl: "https://drive.google.com/file/d/1jHZy3abLV5lTe3rUcfB--99D2mUA_qdT/view?usp=drive_link", // マニュアルへのリンク
-            archiveUrl: "https://drive.google.com/drive/folders/1mEL1q-S0vS4R-aaiN1LK2zfROMRvsvwR?usp=drive_link", // 過去Verまとめへのリンク
-            latestDownloadUrl: "https://drive.google.com/file/d/1NPa8UnGY2J3CAw7ddRBvIWaMSoTUrPML/view?usp=sharing", // 最新版ダウンロード
+            manualUrl: "https://drive.google.com/file/d/1jHZy3abLV5lTe3rUcfB--99D2mUA_qdT/view?usp=drive_link", 
+            archiveUrl: "https://drive.google.com/drive/folders/1mEL1q-S0vS4R-aaiN1LK2zfROMRvsvwR?usp=drive_link", 
+            latestDownloadUrl: "https://drive.google.com/file/d/1NPa8UnGY2J3CAw7ddRBvIWaMSoTUrPML/view?usp=sharing",
             screenshots: [
                 "utaou_sc4.png", // 1枚目
                 "utaou_sc2.png", // 2枚目
@@ -417,8 +431,13 @@
         };
 
         // 反映処理
-        document.getElementById('hero-bg').style.backgroundImage = `url('${CONFIG.heroImage}')`;
+        if (CONFIG.heroImage) {
+            document.getElementById('hero-bg').style.backgroundImage = `url('${CONFIG.heroImage}')`;
+        }
+        
+        // YouTube埋め込み反映
         document.getElementById('youtube-frame').src = `https://www.youtube.com/embed/${CONFIG.youtubeId}`;
+        
         document.getElementById('manual-link').href = CONFIG.manualUrl;
         document.getElementById('archive-link').href = CONFIG.archiveUrl;
         document.getElementById('latest-dl').href = CONFIG.latestDownloadUrl;
@@ -426,9 +445,9 @@
         // スクリーンショットの反映
         CONFIG.screenshots.forEach((url, index) => {
             const el = document.getElementById(`shot-${index + 1}`);
-            if (el) {
+            if (el && url) {
                 el.style.backgroundImage = `url('${url}')`;
-                if(url) el.textContent = ""; // 画像URLがある場合はテキスト(プレースホルダ)を消す
+                el.textContent = ""; // プレースホルダ用テキストを消去
             }
         });
     </script>
