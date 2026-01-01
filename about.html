@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Cantsoft</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #ffffff;
-            --text-main: #111111;
+            --section-bg: #f8f9fa;
+            --accent-blue: #0066ff;
+            --text-main: #1a1a1a;
             --text-sub: #666666;
-            --accent-blue: #0055ff;
-            --border-color: #111111;
-            --nav-bg: #ffffff;
-            --section-bg: #ffffff;
-            --timeline-line: #eeeeee;
+            --border-color: #e0e0e0;
+            --radius: 6px;
         }
 
         body {
@@ -22,247 +21,186 @@
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            padding-top: 100px;
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
         }
 
         /* --- Navigation --- */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 100px;
+            height: 70px;
             padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
+            background: #fff;
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            box-sizing: border-box;
-            border-bottom: 2px solid var(--border-color);
-            backdrop-filter: blur(10px);
         }
-
-        .logo-img { height: 60px; width: auto; }
-        .nav-links { display: flex; gap: 25px; }
-        .nav-links a { color: var(--text-main) !important; text-decoration: none !important; font-size: 0.75rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+        .logo-img { height: 35px; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .nav-links a:hover { color: var(--accent-blue); }
 
         /* --- Page Header --- */
         .page-header {
-            padding: 120px 10% 80px;
-            text-align: left;
+            padding: 80px 5% 60px;
+            text-align: center;
+            background: #fafafa;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .page-header h1 {
-            font-size: clamp(3.5rem, 15vw, 12rem);
-            font-weight: 100;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-size: 3rem;
+            font-weight: 800;
             margin: 0;
-            line-height: 0.8;
+            letter-spacing: 0.05em;
         }
 
-        /* --- Philosophy --- */
-        .content-section {
-            padding: 80px 10%;
-            border-top: 2px solid var(--border-color);
-        }
-
-        .section-label {
-            font-size: 0.7rem;
-            font-weight: 900;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.4em;
-            margin-bottom: 50px;
-            display: block;
-        }
-
-        .philosophy-text {
-            max-width: 900px;
-            font-size: 1.8rem;
-            line-height: 1.8;
-            font-weight: 400;
-            margin-bottom: 80px;
-            letter-spacing: -0.01em;
-        }
-
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            border-top: 1px solid var(--text-main);
-        }
-
-        .profile-row { display: contents; }
-        .profile-key { padding: 40px 0; font-weight: 900; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #eee; color: var(--text-sub); }
-        .profile-value { padding: 40px 0; font-size: 1.2rem; border-bottom: 1px solid #eee; }
-
-        /* --- Modern History Section --- */
-        .history-section {
-            padding: 150px 10%;
-            background-color: var(--section-bg);
-            border-top: 2px solid var(--border-color);
-            position: relative;
-        }
-
-        .history-container {
-            position: relative;
+        /* --- Content Sections --- */
+        .section-padding {
+            padding: 80px 5%;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        /* 縦方向の中央ライン */
-        .history-container::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: var(--timeline-line);
-            transform: translateX(-50%);
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .philosophy-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: var(--text-main);
+        }
+
+        /* --- Profile Table --- */
+        .profile-table {
+            width: 100%;
+            border-top: 1px solid var(--text-main);
+            margin-top: 40px;
+        }
+
+        .profile-row {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            padding: 25px 0;
+        }
+
+        .profile-key {
+            width: 200px;
+            font-weight: bold;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .profile-value {
+            flex: 1;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* --- History Section --- */
+        .history-section {
+            background-color: var(--section-bg);
+            border-top: 1px solid var(--border-color);
+            padding-bottom: 100px;
+        }
+
+        .history-container {
+            position: relative;
+            padding-top: 40px;
         }
 
         .history-year-block {
+            margin-bottom: 60px;
             position: relative;
-            margin-bottom: 150px;
         }
 
         .history-year-title {
-            font-size: 8rem;
-            font-weight: 100;
-            text-align: center;
-            margin-bottom: 60px;
-            color: #f0f0f0;
-            position: relative;
-            z-index: 1;
-            line-height: 1;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 30px;
+            opacity: 0.3;
+        }
+
+        .history-list {
+            border-left: 2px solid var(--border-color);
+            margin-left: 10px;
+            padding-left: 30px;
         }
 
         .history-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 60px;
-            width: 100%;
             position: relative;
+            margin-bottom: 30px;
         }
 
-        /* 奇数番目と偶数番目で左右に振り分け */
-        .history-item:nth-child(even) { flex-direction: row-reverse; }
-
-        .history-content {
-            width: 42%;
-            padding: 20px 0;
-        }
-
-        .history-item:nth-child(odd) .history-content { text-align: right; }
-
-        .history-point {
+        .history-item::before {
+            content: '';
             position: absolute;
-            left: 50%;
+            left: -37px;
+            top: 8px;
             width: 12px;
             height: 12px;
             background: #fff;
-            border: 2px solid var(--text-main);
+            border: 2px solid var(--accent-blue);
             border-radius: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            transition: 0.3s;
-        }
-
-        .history-item:hover .history-point {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-            transform: translateX(-50%) scale(1.5);
         }
 
         .history-date {
-            font-weight: 900;
-            font-size: 0.8rem;
+            font-weight: bold;
+            font-size: 0.85rem;
             color: var(--accent-blue);
             display: block;
-            margin-bottom: 10px;
-            letter-spacing: 0.1em;
+            margin-bottom: 5px;
         }
 
         .history-desc {
-            font-size: 1.2rem;
-            font-weight: 700;
-            line-height: 1.6;
+            font-size: 1.05rem;
+            font-weight: 600;
         }
 
         /* --- Footer --- */
         footer {
-            padding: 100px 10%;
-            background: #000;
-            color: #fff;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 5%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo {
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .social-links-container {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-links-container a {
-            color: #fff !important;
-            text-decoration: none !important;
-            font-size: 0.75rem;
-            font-weight: 900;
-            border: 2px solid rgba(255,255,255,0.2);
-            padding: 12px 24px;
-            transition: 0.2s;
-            letter-spacing: 0.1em;
-        }
-
-        .social-links-container a:hover {
             background: #fff;
-            color: #000 !important;
-            border-color: #fff;
         }
+        .footer-logo { height: 25px; margin-bottom: 10px; }
+        .copyright { font-size: 0.8rem; color: var(--text-sub); }
+        .social-links { display: flex; gap: 20px; }
+        .social-links a { color: var(--text-main); font-size: 0.8rem; text-decoration: none; font-weight: 600; }
 
-        @media (max-width: 900px) {
-            nav { height: 80px; }
-            .logo-img { height: 40px; }
-            .nav-links { gap: 15px; }
-            .nav-links a { font-size: 0.6rem; }
-            .hero-main-title-text { font-size: 4rem; }
-            .hero h1 { font-size: 3.5rem; }
-            .product-item { grid-template-columns: 1fr; min-height: auto; }
-            .product-item > div { padding: 60px 10%; }
-            .product-header h3 { font-size: 2.5rem; }
-            .news-item { grid-template-columns: 1fr; gap: 10px; }
-            footer { flex-direction: column; gap: 40px; text-align: center; }
-        }
-
-        @media (max-width: 900px) {
-            .history-container::before { left: 20px; }
-            .history-point { left: 20px; }
-            .history-item, .history-item:nth-child(even) { flex-direction: row; text-align: left; }
-            .history-content { width: 80%; padding-left: 50px; }
-            .history-item:nth-child(odd) .history-content { text-align: left; }
-            .history-year-title { font-size: 4rem; text-align: left; padding-left: 50px; }
-            .profile-grid { grid-template-columns: 1fr; }
-            .profile-key { padding-bottom: 5px; border-bottom: none; }
+        @media (max-width: 768px) {
+            .profile-row { flex-direction: column; gap: 10px; }
+            .profile-key { width: 100%; }
+            .history-year-title { font-size: 2rem; }
+            footer { flex-direction: column; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-container">
-            <a href="index.html">
-                <img src="logo.png" alt="CANTSOFT" class="logo-img">
-            </a>
-        </div>
+        <a href="index.html"><img src="logo.png" alt="CANTSOFT" class="logo-img"></a>
         <div class="nav-links">
             <a href="index.html">HOME</a>
             <a href="products.html">PRODUCTS</a>
@@ -276,95 +214,79 @@
         <h1>ABOUT US</h1>
     </header>
 
-    <section class="content-section">
-        <span class="section-label">Brand Philosophy</span>
-        <div class="philosophy-text">
-            Cantsoftは、あなたの創作活動をより開放的なものにするツールを企画・販売しています。<br>
-            「作る」というプロセスそのものを、より楽しく、より自由に。
-        </div>
+    <div class="section-padding">
+        <section>
+            <span class="section-label">Brand Philosophy</span>
+            <div class="philosophy-text">
+                Cantsoftは、あなたの創作活動をより開放的なものにするツールを企画・開発しています。<br>
+                「作る」というプロセスそのものを、より楽しく、より自由に。
+            </div>
 
-        <div class="profile-grid">
-            <div class="profile-row">
-                <div class="profile-key">Name</div>
-                <div class="profile-value">Cantsoft</div>
+            <div class="profile-table">
+                <div class="profile-row">
+                    <div class="profile-key">Brand Name</div>
+                    <div class="profile-value">Cantsoft（カントソフト）</div>
+                </div>
+                <div class="profile-row">
+                    <div class="profile-key">Established</div>
+                    <div class="profile-value">2024.02</div>
+                </div>
+                <div class="profile-row">
+                    <div class="profile-key">Representative</div>
+                    <div class="profile-value">多色餅 (@Tashokumochi)</div>
+                </div>
+                <div class="profile-row">
+                    <div class="profile-key">Business</div>
+                    <div class="profile-value">ソフトウェアの企画・開発・販売</div>
+                </div>
             </div>
-            <div class="profile-row">
-                <div class="profile-key">Established</div>
-                <div class="profile-value">2024.2</div>
-            </div>
-            <div class="profile-row">
-                <div class="profile-key">Representative</div>
-                <div class="profile-value">多色餅 @Tashokumochi</div>
-            </div>
-            <div class="profile-row">
-                <div class="profile-key">Service</div>
-                <div class="profile-value">Software Planning & Development</div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <section class="history-section">
-        <span class="section-label">History</span>
-        
-        <div class="history-container">
+        <div class="section-padding">
+            <span class="section-label">History</span>
             
-            <!-- 2026 -->
-            <div class="history-year-block">
-                <div class="history-year-title">2026</div>
-                <div class="history-item">
-                    <div class="history-point"></div>
-                    <div class="history-content">
-                        <span class="history-date">JAN 01</span>
-                        <div class="history-desc">UTAU音源制作支援ツール「UTAOU♪」をリリース。</div>
+            <div class="history-container">
+                <div class="history-year-block">
+                    <div class="history-year-title">2026</div>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <span class="history-date">JAN 01</span>
+                            <div class="history-desc">UTAU音源制作支援ツール「UTAOU♪」リリース</div>
+                        </div>
+                        <div class="history-item">
+                            <span class="history-date">JAN 01</span>
+                            <div class="history-desc">Cantsoft 公式ウェブサイト開設</div>
+                        </div>
                     </div>
                 </div>
-                    <div class="history-item">
-                    <div class="history-point"></div>
-                    <div class="history-content">
-                        <span class="history-date">JAN 01</span>
-                        <div class="history-desc">Cantsoft HP開設</div>
-                    </div>
 
-
-                </div>
-            </div>
-
-            <!-- 2025 -->
-            <div class="history-year-block">
-                <div class="history-year-title">2025</div>
-
-                <div class="history-item">
-                    <div class="history-point"></div>
-                    <div class="history-content">
-                        <span class="history-date">AUG 25</span>
-                        <div class="history-desc">Cantsoft公式コミュニティサーバー開設</div>
-                    </div>
-
-            </div>
-                    
-
-                <div class="history-item">
-                    <div class="history-point"></div>
-                    <div class="history-content">
-                        <span class="history-date">FEB 02</span>
-                        <div class="history-desc">Cantsoftソフトウェアブランドを開設</div>
+                <div class="history-year-block">
+                    <div class="history-year-title">2025</div>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <span class="history-date">AUG 25</span>
+                            <div class="history-desc">Cantsoft 公式コミュニティサーバー開設</div>
+                        </div>
+                        <div class="history-item">
+                            <span class="history-date">FEB 02</span>
+                            <div class="history-desc">Cantsoft ソフトウェアブランド始動</div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
     <footer>
-        <div class="footer-brand">
+        <div>
             <img src="logo.png" alt="CANTSOFT" class="footer-logo">
             <div class="copyright">&copy; 2025 Cantsoft. All rights reserved.</div>
         </div>
-        <div class="footer-social-section">
-            <div class="social-links-container">
-                <a href="https://x.com/cantsoft" target="_blank">X (Twitter)</a>
-                <a href="https://youtube.com/@cantsoft" target="_blank">YouTube</a>
-            </div>
+        <div class="social-links">
+            <a href="https://x.com/cantsoft" target="_blank">X (Twitter)</a>
+            <a href="https://youtube.com/@cantsoft" target="_blank">YouTube</a>
         </div>
     </footer>
 
