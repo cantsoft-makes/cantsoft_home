@@ -4,404 +4,334 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Cantsoft</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --section-bg: #111111;
-            --card-bg: #1a1a1a;
+            --bg-color: #ffffff;
+            --section-bg: #f8f9fa;
             --accent-blue: #0066ff;
-            --text-main: #ffffff;
-            --text-sub: #a0a0a0;
-            --border-color: #2a2a2a;
-            --nav-bg: rgba(10, 10, 10, 0.95);
+            --text-main: #1a1a1a;
+            --text-sub: #666666;
+            --border-color: #e0e0e0;
+            --radius: 0px; 
         }
 
-        html { scroll-behavior: smooth; }
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding-top: 100px; /* Header height */
+            line-height: 1.6;
         }
 
-        /* --- Navigation (ロゴを大きく修正) --- */
+        /* --- Navigation --- */
         nav {
-            position: fixed;
-            top: 0; 
-            width: 100%; 
-            height: 100px; /* 100pxに拡大 */
+            height: 70px;
             padding: 0 5%;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            background: var(--nav-bg); 
-            z-index: 1000; 
-            box-sizing: border-box;
-            border-bottom: 2px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-        .logo-container a {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            text-decoration: none !important;
+            border-bottom: 1px solid var(--border-color);
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .logo-img { 
-            height: 60px; /* 60pxに拡大 */
-            width: auto; 
-            display: block;
-        }
-        .nav-links { display: flex; gap: 25px; }
-        .nav-links a { 
-            color: #fff !important; 
-            text-decoration: none !important; 
-            font-size: 0.75rem; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            letter-spacing: 0.1em; 
-        }
-        .nav-links a:hover {
-            color: var(--accent-blue) !important;
+        .logo-img { height: 35px; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         /* --- Header Section --- */
         .page-header {
-            padding: 80px 10% 60px;
+            position: relative;
+            padding: 100px 5% 80px;
             text-align: center;
+            background-color: #111;
+            background-image: url('products_header_bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            color: #fff;
         }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        .page-header-content { position: relative; z-index: 2; }
         .page-header h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
+            font-size: 3rem;
+            font-weight: 200;
             margin: 0;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
         }
         .sub-message {
-            font-size: 1.2rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--accent-blue);
-            margin: 20px 0 30px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
             letter-spacing: 0.3em;
+            display: block;
         }
         .description {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--text-sub);
+            max-width: 600px;
+            margin: 15px auto 0;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        /* --- Filter Section --- */
+        /* --- Filter Section (スマホ対応) --- */
         .filter-section {
-            padding: 20px 10%;
-            background: var(--section-bg);
-            border-top: 1px solid var(--border-color);
+            background: #fff;
             border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 70px;
+            z-index: 900;
+        }
+        
+        /* スマホ用のアコーディオンボタン（初期は非表示） */
+        .filter-toggle {
+            display: none;
+            width: 100%;
+            padding: 15px;
+            background: #fdfdfd;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--text-main);
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-container {
+            padding: 15px 5%;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 20px;
-            position: sticky;
-            top: 100px; /* Matched with nav height */
-            z-index: 900;
         }
+
         .filter-group {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            align-items: center;
+            gap: 10px;
         }
         .filter-group label {
-            font-size: 0.6rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-sub);
         }
         .filter-group select {
-            background: #000;
-            color: #fff;
+            background: #fff;
             padding: 8px 12px;
             border: 1px solid var(--border-color);
-            font-family: inherit;
-            font-weight: 700;
-            outline: none;
-            cursor: pointer;
-            transition: border-color 0.3s;
-            min-width: 160px;
-        }
-        .filter-group select:hover {
-            border-color: var(--accent-blue);
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            min-width: 140px;
         }
 
         /* --- Products Container --- */
         .products-container {
-            padding: 60px 10%;
-            min-height: 400px;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .category-block {
-            margin-bottom: 100px;
-        }
+        .category-block { margin-bottom: 80px; }
         .category-title {
-            font-size: 1.4rem;
-            font-weight: 900;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            letter-spacing: 0.1em;
-            color: #fff;
-        }
-        .category-title::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            padding-left: 15px;
+            border-left: 5px solid var(--accent-blue);
         }
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 30px;
         }
 
-        /* --- Product Card --- */
         .product-card {
-            position: relative;
-            text-decoration: none !important;
-            color: inherit !important;
-            background: var(--card-bg);
+            text-decoration: none;
+            color: inherit;
+            background: #fff;
             border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: 0.2s;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-blue);
-            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.1);
-        }
-
-        .badge-container {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            z-index: 10;
-            display: flex;
-            gap: 6px;
-        }
-        .status-badge {
-            padding: 4px 8px;
-            font-size: 0.6rem;
-            font-weight: 900;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-transform: uppercase;
-        }
-        .status-badge.service-label {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-        }
-
+        .product-card:hover { border-color: var(--accent-blue); transform: translateY(-2px); }
         .product-img-box {
             width: 100%;
             aspect-ratio: 16/9;
-            background-color: #222;
+            background-color: #eee;
             background-size: cover;
             background-position: center;
-            transition: transform 0.6s ease;
         }
-        .product-card:hover .product-img-box {
-            transform: scale(1.05);
-        }
-        .product-content {
-            padding: 25px;
-        }
-        .product-type-tag {
-            font-size: 0.6rem;
-            font-weight: 900;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            display: block;
-            letter-spacing: 0.1em;
-        }
-        .product-name {
-            font-size: 1.3rem;
-            font-weight: 900;
-            margin: 0 0 12px 0;
-            letter-spacing: 0.05em;
-        }
-        .product-desc {
-            font-size: 0.85rem;
+        .product-content { padding: 20px; }
+        .product-tags { display: flex; gap: 6px; margin-bottom: 12px; }
+        .tag {
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            background: #f0f0f0;
             color: var(--text-sub);
-            line-height: 1.6;
         }
+        .tag.tag-accent { background: #eef5ff; color: var(--accent-blue); }
+        .product-name { font-size: 1.2rem; font-weight: 800; margin: 0 0 10px 0; }
+        .product-desc { font-size: 0.9rem; color: var(--text-sub); margin: 0; }
+
+        .no-results { text-align: center; padding: 100px 0; color: var(--text-sub); display: none; }
 
         /* --- Footer --- */
         footer {
-            padding: 100px 10%;
-            background: #000;
-            color: #fff;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 5%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo {
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .social-links-container {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-links-container a {
-            color: #fff !important;
-            text-decoration: none !important;
-            font-size: 0.75rem;
-            font-weight: 900;
-            border: 2px solid rgba(255,255,255,0.2);
-            padding: 12px 24px;
-            transition: 0.2s;
-            letter-spacing: 0.1em;
-        }
-
-        .social-links-container a:hover {
             background: #fff;
-            color: #000 !important;
-            border-color: #fff;
         }
 
-        @media (max-width: 900px) {
-            nav { height: 80px; }
-            .logo-img { height: 40px; }
-            .nav-links { gap: 15px; }
-            .nav-links a { font-size: 0.6rem; }
-            .hero-main-title-text { font-size: 4rem; }
-            .hero h1 { font-size: 3.5rem; }
-            .product-item { grid-template-columns: 1fr; min-height: auto; }
-            .product-item > div { padding: 60px 10%; }
-            .product-header h3 { font-size: 2.5rem; }
-            .news-item { grid-template-columns: 1fr; gap: 10px; }
-            footer { flex-direction: column; gap: 40px; text-align: center; }
+        /* --- Responsive (Mobile) --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* 本来はハンバーガーメニュー等にすべきですが一旦非表示に */
+            .page-header { padding: 80px 5% 60px; }
+            .page-header h1 { font-size: 2.2rem; }
+            
+            .filter-toggle { display: block; } /* 折りたたみボタンを表示 */
+            .filter-container {
+                display: none; /* 初期状態は非表示 */
+                flex-direction: column;
+                padding: 20px 5%;
+            }
+            .filter-container.active { display: flex; } /* ボタンクリックで表示 */
+            .filter-group { justify-content: space-between; }
+            .filter-group select { width: 60%; }
+
+            .product-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; gap: 30px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-container">
-            <a href="products.html"><img src="logo.png" alt="CANTSOFT" class="logo-img"></a>
-        </div>
+        <a href="index.html"><img src="logo.png" alt="CANTSOFT" class="logo-img"></a>
         <div class="nav-links">
             <a href="index.html">HOME</a>
             <a href="products.html">PRODUCTS</a>
             <a href="news.html">NEWS</a>
-            <a href="about.html">ABOUT</a>
+            <a href="about.html">ABOUT US</a>
+            <a href="contact.html">CONTACT</a>
         </div>
     </nav>
 
     <header class="page-header">
-        <h1>PRODUCTS</h1>
-        <div class="sub-message">より新しい体験を</div>
-        <p class="description">
-            Cantsoftの製品は「創作活動支援ソフトウェア」と「開発支援ソフトウェア」の2種類に分けて提供しています。
-        </p>
+        <div class="page-header-content">
+            <span class="sub-message">Solutions</span>
+            <h1>PRODUCTS</h1>
+            <p class="description">
+                創作活動を豊かにするソフトウェアから、開発を支えるエンジニアリングツールまで。<br>
+                Cantsoftが提供する製品ラインナップです。
+            </p>
+        </div>
     </header>
 
     <div class="filter-section">
-        <div class="filter-group">
-            <label>サービスの種類</label>
-            <select id="service-filter">
-                <option value="all">すべて表示</option>
-                <option value="creative">創作活動支援ソフトウェア</option>
-                <option value="dev">開発支援ソフトウェア</option>
-                <option value="discontinued">販売終了品</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label>ソフトウェアの種類</label>
-            <select id="type-filter">
-                <option value="all">すべて</option>
-                <option value="audio">音声系</option>
-                <option value="amadeusy">音声系(AmadeuSY用音源)</option>
-                <option value="text">文章管理系</option>
-                <option value="plugin">ソフトウェア音源(インストルメンタルプラグイン)</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label>価格種類</label>
-            <select id="price-filter">
-                <option value="all">すべて</option>
-                <option value="paid">有償ソフトウェア</option>
-                <option value="free">無償ソフトウェア</option>
-                <option value="trial">トライアル版あり</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label>供給元</label>
-            <select id="vendor-filter">
-                <option value="all">すべて</option>
-                <option value="cantsoft">Cantsoft</option>
-            </select>
+        <button class="filter-toggle" id="filter-toggle">絞り込み条件を指定 ▼</button>
+        <div class="filter-container" id="filter-container">
+            <div class="filter-group">
+                <label>サービス</label>
+                <select id="service-filter">
+                    <option value="all">すべて表示</option>
+                    <option value="creative">創作活動支援</option>
+                    <option value="dev">開発支援</option>
+                    <option value="discontinued">販売終了品</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>カテゴリ</label>
+                <select id="type-filter">
+                    <option value="all">すべて</option>
+                    <option value="audio">音声系</option>
+                    <option value="amadeusy">音声系(AmadeuSY用)</option>
+                    <option value="text">文章管理系</option>
+                    <option value="plugin">ソフトウェア音源(DTM向けDAW用プラグイン音源)</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>価格</label>
+                <select id="price-filter">
+                    <option value="all">すべて</option>
+                    <option value="paid">有償</option>
+                    <option value="paidandfree">無償/有償</option>
+                    <option value="free">無償</option>
+                    <option value="trial">トライアルあり</option>
+                </select>
+            </div>
         </div>
     </div>
 
     <main class="products-container" id="products-list">
-        <!-- JSによる動的生成 -->
     </main>
     <div id="no-results" class="no-results">該当する製品が見つかりませんでした。</div>
 
     <footer>
-        <div class="footer-brand">
+        <div>
             <img src="logo.png" alt="CANTSOFT" class="footer-logo">
             <div class="copyright">&copy; 2025 Cantsoft. All rights reserved.</div>
         </div>
-        <div class="footer-social-section">
-            <div class="social-links-container">
-                <a href="https://x.com/cantsoft" target="_blank">X (Twitter)</a>
-                <a href="https://youtube.com/@cantsoft" target="_blank">YouTube</a>
-            </div>
+        <div class="social-links">
+            <a href="https://x.com/cantsoft" target="_blank">X (Twitter)</a>
+            <a href="https://youtube.com/@cantsoft" target="_blank">YouTube</a>
         </div>
     </footer>
 
     <script>
-const products = [
-    {
-        id: "utaou",
-        name: "UTAOU♪",
-        service: "dev", 
-        type: "audio",
-        priceType: "free",
-        vendor: "cantsoft",
-        desc: "UTAU音源制作支援ツール。UTAU音源を作る際の収録をより簡単に。",
-        image: "utaou_image.png",
-        link: "utaou.html"
-    },
-    {
-        id: "amadeusy_series",
-        name: "AmadeuSY用音源シリーズ",
-        service: "", 
-        service: "creative", 
-        type: "audio",
-        priceType: "paid",
-        vendor: "cantsoft",
-        desc: "AI歌唱ソフト「AmadeuSY」専用データベースシリーズです。",
-        image: "gui_screenshot.png",
-        link: "amadeusy_products.html"
-    }
-];
+        const products = [
+            {
+                id: "utaou",
+                name: "UTAOU♪",
+                service: "dev", 
+                type: "audio",
+                priceType: "free",
+                vendor: "cantsoft",
+                desc: "UTAU音源制作支援ツール。UTAU音源を作る際の収録をより簡単に。",
+                image: "utaou_image.png",
+                link: "utaou.html"
+            },
+            {
+                id: "amadeusy_series",
+                name: "AmadeuSY用音源シリーズ",
+                service: "creative", 
+                type: "audio",
+                priceType: "paid",
+                vendor: "cantsoft",
+                desc: "AI歌唱ソフト「AmadeuSY」専用データベースシリーズです。",
+                image: "gui_screenshot.png",
+                link: "amadeusy_products.html"
+            }
+        ];
 
+        // フィルター開閉の制御
+        const toggleBtn = document.getElementById('filter-toggle');
+        const filterContainer = document.getElementById('filter-container');
+
+        toggleBtn.addEventListener('click', () => {
+            filterContainer.classList.toggle('active');
+            toggleBtn.textContent = filterContainer.classList.contains('active') ? '絞り込み条件を閉じる ▲' : '絞り込み条件を指定 ▼';
+        });
 
         const serviceFilter = document.getElementById('service-filter');
         const typeFilter = document.getElementById('type-filter');
         const priceFilter = document.getElementById('price-filter');
-        const vendorFilter = document.getElementById('vendor-filter');
         const productsList = document.getElementById('products-list');
         const noResults = document.getElementById('no-results');
 
@@ -409,7 +339,6 @@ const products = [
             const sVal = serviceFilter.value;
             const tVal = typeFilter.value;
             const pVal = priceFilter.value;
-            const vVal = vendorFilter.value;
 
             productsList.innerHTML = '';
 
@@ -426,8 +355,7 @@ const products = [
                     const matchCat = (sVal === 'all' || sVal === p.service) && (p.service === cat.id);
                     const matchType = (tVal === 'all' || tVal === p.type);
                     const matchPrice = (pVal === 'all' || pVal === p.priceType);
-                    const matchVendor = (vVal === 'all' || vVal === p.vendor);
-                    return matchCat && matchType && matchPrice && matchVendor;
+                    return matchCat && matchType && matchPrice;
                 });
 
                 if (filtered.length > 0) {
@@ -438,25 +366,22 @@ const products = [
                     let productsHtml = filtered.map(p => {
                         let displayType = p.type === 'audio' ? '音声系' : 
                                           p.type === 'text' ? '文章管理系' : 
-                                          p.type === 'amadeusy' ? '音声系(AmadeuSY用音源)' : p.type;
+                                          p.type === 'plugin' ? 'ソフトウェア音源(プラグイン)' : 
+                                          p.type === 'amadeusy' ? '音声系(AmadeuSY用)' : p.type;
                         
-                        let displayPrice = p.priceType === 'paid' ? '有償ソフトウェア' :
-                                           p.priceType === 'free' ? '無償ソフトウェア' :
-                                           p.priceType === 'trial' ? 'トライアル版あり' : '';
-
-                        let displayService = p.service === 'creative' ? '創作活動支援' :
-                                             p.service === 'dev' ? '開発支援' :
-                                             p.service === 'discontinued' ? '提供終了' : '';
+                        let displayPrice = p.priceType === 'paid' ? '有償' :
+                                           p.priceType === 'free' ? '無償' :
+                                           p.priceType === 'paidandfree' ? '無償/有償' :
+                                           p.priceType === 'trial' ? '体験版' : '';
 
                         return `
                             <a href="${p.link}" class="product-card">
-                                <div class="badge-container">
-                                    <div class="status-badge">${displayPrice}</div>
-                                    <div class="status-badge service-label">${displayService}</div>
-                                </div>
                                 <div class="product-img-box" style="background-image: url('${p.image}');"></div>
                                 <div class="product-content">
-                                    <span class="product-type-tag">${displayType}</span>
+                                    <div class="product-tags">
+                                        <span class="tag tag-accent">${displayPrice}</span>
+                                        <span class="tag">${displayType}</span>
+                                    </div>
                                     <h3 class="product-name">${p.name}</h3>
                                     <p class="product-desc">${p.desc}</p>
                                 </div>
@@ -465,9 +390,7 @@ const products = [
                     }).join('');
 
                     section.innerHTML = `
-                        <div class="category-title">
-                            <span>${cat.title}</span>
-                        </div>
+                        <div class="category-title">${cat.title}</div>
                         <div class="product-grid">
                             ${productsHtml}
                         </div>
@@ -479,7 +402,7 @@ const products = [
             noResults.style.display = hasAnyVisible ? 'none' : 'block';
         }
 
-        [serviceFilter, typeFilter, priceFilter, vendorFilter].forEach(el => {
+        [serviceFilter, typeFilter, priceFilter].forEach(el => {
             el.addEventListener('change', renderProducts);
         });
 
